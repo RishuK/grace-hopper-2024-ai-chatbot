@@ -1,48 +1,51 @@
-from typing import List
 from langchain_community.graphs import Neo4jGraph
 from langchain.docstore.document import Document
 from langchain_community.llms import Ollama
-from langchain_core.messages import HumanMessage
-from langchain_core.output_parsers import StrOutputParser
 from langchain_experimental.graph_transformers import LLMGraphTransformer
 from langchain.text_splitter import TokenTextSplitter
 from langchain_community.vectorstores import Neo4jVector
 from langchain.chains import RetrievalQA
 import gradio as gr
 import os
-from neo4j import GraphDatabase
-from yfiles_jupyter_graphs import GraphWidget
 from langchain_core.prompts import PromptTemplate
 
 os.environ["NEO4J_URI"] = "bolt://localhost:7687"
 os.environ["NEO4J_USERNAME"] = "neo4j"
-os.environ["NEO4J_PASSWORD"] = "Password" # replace with password value
+os.environ["NEO4J_PASSWORD"] = "testing123" # replace with password value
 
 graph = Neo4jGraph()
 
+# Specify the path to your text file
+file_path = "sample-text.txt"
 
-text = """Emily is an employee at TechNova, a leading technology company based in Silicon Heights. She has been working there for the past four years as a software developer. James is also an employee at TechNova, where he works as a data analyst. He joined the company three years ago after completing his undergraduate studies. TechNova is a renowned technology company that specializes in developing innovative software solutions and advanced artificial intelligence systems. The company boasts a diverse team of talented professionals from various fields. Both Emily and James are highly skilled experts who contribute significantly to TechNova's achievements. They collaborate closely with their respective teams to create cutting-edge products and services that cater to the dynamic needs of the company's clients."""
+try:
+    # Read the text from the file
+    with open(file_path, "r", encoding='utf-8') as file:
+        text = file.read()
 
-# Initialize TokenTextSplitter with desired parameters
-text_splitter = TokenTextSplitter(
-    chunk_size=100,  # Adjust chunk size as needed
-    chunk_overlap=20  # Adjust overlap to maintain context
-)
+    # Initialize TokenTextSplitter with desired parameters
+    text_splitter = TokenTextSplitter(
+        chunk_size=200,  # Adjust chunk size as needed
+        chunk_overlap=20  # Adjust overlap to maintain context
+    )
 
-# Convert the formatted text into a list of Document objects
-documents = [Document(page_content=text)]
+    # Convert the formatted text into a list of Document objects
+    texts = []
+    document = Document(page_content=text)
+    texts.append(document)
 
-# Split the text into chunks
-texts = text_splitter.split_documents(documents)
+    # Split the text into chunks
+    documents = text_splitter.split_documents(texts)
+    # Print the split chunks
+    for i, chunk in enumerate(documents):
+        print(f"Chunk {i+1}:\n{chunk}\n")
 
-# Print the split chunks
-for i, chunk in enumerate(texts):
-    print(f"Chunk {i+1}:\n{chunk}\n")
-
+except FileNotFoundError:
+    print(f"Error: File '{file_path}' not found.")
 llm = Ollama(model="llama3")
 
 llm_transformer = LLMGraphTransformer(
-    llm=llm, 
+    llm=llm,
     allowed_nodes=["Author", "Book", "Publisher"],
     allowed_relationships=["WRITTEN_BY", "PUBLISHED_BY"],
 )
@@ -53,27 +56,7 @@ print("graph documents", graph_documents)
 
 print(f"Nodes:{graph_documents[0].nodes}") # this is to see Nodes of generated graph
 print("-----------------------------------------------------------------")
-print(f"Relationships:{graph_documents[0].relationships}") 
-
-
-
-# directly show the graph resulting from the given Cypher query
-default_cypher = "MATCH (s)-[r:!MENTIONS]->(t) RETURN s,r,t LIMIT 50"
-
-def showGraph(cypher: str = default_cypher):
-    # create a neo4j session to run queries
-    driver = GraphDatabase.driver(
-        uri = os.environ["NEO4J_URI"],
-        auth = (os.environ["NEO4J_USERNAME"],
-                os.environ["NEO4J_PASSWORD"]))
-    session = driver.session()
-    widget = GraphWidget(graph = session.run(cypher).graph())
-    widget.node_label_mapping = 'id'
-    #display(widget)
-    return widget
-
-showGraph()
-
+print(f"Relationships:{graph_documents[0].relationships}")
 
 # Store to neo4j
 graph.add_graph_documents(
@@ -115,7 +98,7 @@ Helpful Answer:"""
 QA_CHAIN_PROMPT = PromptTemplate(input_variables=["context", "question"], template=template)
 
 qa_chain = RetrievalQA.from_chain_type(
-    llm, 
+    llm,
     retriever=vector_index.as_retriever(),
     chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
 )
