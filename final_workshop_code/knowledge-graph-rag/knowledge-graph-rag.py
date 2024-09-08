@@ -17,7 +17,7 @@ os.environ["NEO4J_PASSWORD"] = "testing123" # replace with password value
 graph = Neo4jGraph()
 
 # Specify the path to your text file
-file_path = "sample-text.txt"
+file_path = "Lumina.txt"
 
 try:
     # Read the text from the file
@@ -47,8 +47,8 @@ llm = Ollama(model="llama3")
 
 llm_transformer = LLMGraphTransformer(
     llm=llm,
-    allowed_nodes=["Author", "Book", "Publisher"],
-    allowed_relationships=["WRITTEN_BY", "PUBLISHED_BY"],
+    allowed_nodes=["Company", "Person", "Knowledge Graph", "Data Source", "Supplier", "Warehouse", "Store", "Product", "Shipment", "Customer", "External Factor"],
+    allowed_relationships=["WORKS_AT", "CREATES", "USES_DATA_FROM", "SUPPLIES", "STOCKS", "DELIVERS_TO", "LOCATED_AT", "PURCHASED_BY", "AFFECTS", "MANAGES", "CONTAINS", "HAS_CONTRACT_WITH", "HAS_INVENTORY", "INFLUENCES" ],
 )
 
 ## Filter out any complex data not supported by Chroma DB, before we pass it for vertorization
