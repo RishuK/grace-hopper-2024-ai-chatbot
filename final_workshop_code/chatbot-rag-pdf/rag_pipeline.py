@@ -6,8 +6,7 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema.runnable import RunnablePassthrough
 from langchain.prompts import PromptTemplate
-from langchain.vectorstores.utils import filter_complex_metadata
-
+from langchain_community.vectorstores.utils import filter_complex_metadata
 
 class ChatDocument:
     vector_store = None
@@ -18,7 +17,7 @@ class ChatDocument:
         self.model = ChatOllama(model="mistral")
 
         ## Different text splitters available - https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/
-        self.text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=100)
+        self.text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=20)
         self.prompt_from_template = PromptTemplate.from_template(
             """
             <s> [INST] You are an assistant for question-answering tasks. Use the following pieces of retrieved context 
@@ -40,6 +39,7 @@ class ChatDocument:
 
         ## Filter out any complex data not supported by Chroma DB, before we pass it for vertorization
         document_chunks = filter_complex_metadata(document_chunks)
+        print(document_chunks)
 
         ## Vectorize the document chunks using FastEmeddings and store in Chroma
         chroma_vector_store = Chroma.from_documents(documents=document_chunks, embedding=FastEmbedEmbeddings())
@@ -49,8 +49,8 @@ class ChatDocument:
         self.retriever = chroma_vector_store.as_retriever(
             search_type="similarity_score_threshold",
             search_kwargs={
-                "k": 5, ## return top 5 chunks
-                "score_threshold": 0.75, ## with scores above this value
+                "k": 10, ## return top 5 chunks
+                "score_threshold": 0.50, ## with scores above this value
             },
         )
 
@@ -64,6 +64,8 @@ class ChatDocument:
     def chatQuestion(self, query: str):
         if not self.chain:
             return "Please, add a PDF document first."
+
+        print(query)
 
         return self.chain.invoke(query)
 

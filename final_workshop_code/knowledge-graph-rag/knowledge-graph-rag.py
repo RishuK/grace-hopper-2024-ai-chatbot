@@ -1,6 +1,7 @@
 from langchain_community.graphs import Neo4jGraph
 from langchain.docstore.document import Document
 from langchain_community.llms import Ollama
+from langchain_community.vectorstores.utils import filter_complex_metadata
 from langchain_experimental.graph_transformers import LLMGraphTransformer
 from langchain.text_splitter import TokenTextSplitter
 from langchain_community.vectorstores import Neo4jVector
@@ -50,8 +51,12 @@ llm_transformer = LLMGraphTransformer(
     allowed_relationships=["WRITTEN_BY", "PUBLISHED_BY"],
 )
 
+## Filter out any complex data not supported by Chroma DB, before we pass it for vertorization
+document_chunks = filter_complex_metadata(documents)
+
+
 # Extract graph data
-graph_documents = llm_transformer.convert_to_graph_documents(texts)
+graph_documents = llm_transformer.convert_to_graph_documents(documents)
 print("graph documents", graph_documents)
 
 print(f"Nodes:{graph_documents[0].nodes}") # this is to see Nodes of generated graph

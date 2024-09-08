@@ -1,13 +1,6 @@
 # grace-hopper-2024-ai-chatbot
 ## Grace Hopper AI Chatbot application
 
-## Workspace setup
-
-### Steps: 
-#### Install pip, python, poetry
-python version: 3.12.5
-pip3
-
 #### Initiatize poetry project
 ```bash
 poetry init
@@ -65,6 +58,13 @@ Use StreamLit APIs to demonstrate the chat bot
 chat_ui.py
 ```
 
+#### How to run this StreamLit app?
+Execute 
+```
+streamlist run chat_ui.py
+```
+
+Use the pdf file - Elena.pdf in the folder and Ask questions about Elena's work
 
 
 
