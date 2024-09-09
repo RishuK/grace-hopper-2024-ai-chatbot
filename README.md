@@ -22,7 +22,9 @@ These workshop contains the following branches:
 
 Steps: 
 1. Clone the repository and checkout branch 'excercies'
-2. Excercises: 
-- Excercise 1 : 
+2. We will work through the following excercises: 
+#### Excercise 1 : Building RAG Chatbot using vector store  
+#### Excercise 2: RAG Chatbot with Knowledge Graph
+
 
 
