@@ -46,7 +46,7 @@ The RAG pipeline is divided into the following steps which will be achieved from
 ```
 rag_pipeline.py
 ```
-1. Upload document 
+1. Upload document - use Elena.pdf 
 2. Split the document into smaller chunks
 3. Vectorize the document chunks using FastEmeddings and store in Chroma
 4. Configure the Vector store Retriever for the type of search
