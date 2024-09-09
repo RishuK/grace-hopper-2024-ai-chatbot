@@ -2,7 +2,7 @@
 name = "grace-hopper-2024-ai-chatbot-main"
 version = "0.1.0"
 description = ""
-authors = ["RishuK <rishuoberoi@gmail.com>"]
+authors = ["RishuK <rishuoberoi@gmail.com>", "Reeti Sarup <reeti.sarup@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
