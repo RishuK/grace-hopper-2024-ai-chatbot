@@ -45,6 +45,7 @@ Steps:
 2. We will work through the following excercises. Each excercise has its README file that will guide you
 
 #### Exercise 1 : Building RAG Chatbot using vector store
+[Excercise-1 Readme](./excercise-1-chatbot-rag-pdf/README.md)
 
 #### Exercise 2: RAG Chatbot with Knowledge Graph
 
