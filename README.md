@@ -8,10 +8,6 @@ At the end of the workshop, you will have a working AI-powered chatbot, which wi
 
 Link to the GHC 2024 Workshop Session: [GHC Workshop Link](https://ghc.anitab.org/session-catalog/?search.sessiontype=1712687033982003Uicv&search.sessiontracks=1715091731850001IqQr&search.experiencetype=option_1713202494133#/session/1717218930814001YQKl)
 
-<div> 
-    <img src="./assets/Screenshot 2024-09-10 at 12.23.42 AM.png" alt="GHC workshop session details" width="90%"/>
-</div>
-
 ## Pre-requisites Workspace setup starts here
 
 ### Steps:
@@ -45,11 +41,11 @@ Steps:
 2. We will work through the following excercises. Each excercise has its README file that will guide you
 
 #### Exercise 1 : Building RAG Chatbot using vector store
-[Excercise-1 Readme](./excercise-1-chatbot-rag-pdf/README.md)
+[Exercise-1 Readme](./exercise-1-chatbot-rag-pdf/README.md)
 
 #### Exercise 2: RAG Chatbot with Knowledge Graph
 
-[Exercise-2 Readme](./excercise-2-knowledge-graph-rag/README.md)
+[Exercise-2 Readme](./exercise-2-knowledge-graph-rag/README.md)
 
 - [Neo4j Desktop Installation and Setup Steps](./exercise-2-knowledge-graph-rag/README.md/#neo4j-desktop-setup)
 - [Sample Data Description for Knowledge Graph Exercise](./exercise-2-knowledge-graph-rag/README.md/#sample-data-file-description-for-the-knowledge-graph)
