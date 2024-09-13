@@ -1,12 +1,15 @@
 # RAG Chatbot with Knowledge Graph
 
-## Neo4j Desktop Setup
+## ** Pre-requisites start here **
+
+
+### Neo4j Desktop Setup
 
 You can watch this Neo4j Installation Guide Video for more reference:
 
 [![Neo4j Installation Guide Video](https://img.youtube.com/vi/pPhJi9twN9Q/0.jpg)](https://www.youtube.com/watch?v=pPhJi9twN9Q)
 
-### STEP-1: Installation and Local Setup of Neo4j Desktop Setup
+#### STEP-1: Installation and Local Setup of Neo4j Desktop Setup
 
 1.1. Download the latest free version of Neo4j Desktop from here: https://neo4j.com/download/.
 
@@ -52,7 +55,7 @@ You can also view the various installation options for Neo4j on the [Neo4j Deplo
 </div>
 <br/>
 
-### STEP-2: Create a new Project and local DBMS in Neo4j Desktop
+#### STEP-2: Create a new Project and local DBMS in Neo4j Desktop
 
 2.1. Create a new project in Neo4j Desktop.
 
@@ -74,7 +77,7 @@ You can also view the various installation options for Neo4j on the [Neo4j Deplo
     <img src="./assets/Screenshot 2024-09-09 at 11.27.34 PM.png" alt="start DBMS" width="70%"/>
 </div>
 
-### STEP-3: Install the required plugins
+#### STEP-3: Install the required plugins
 
 3.1. Click on the DBMS to open the right side panel. Click on the Plugins tab in the right side panel in Neo4j Desktop app.
 
@@ -92,7 +95,7 @@ You can also view the various installation options for Neo4j on the [Neo4j Deplo
 </div>
 <br/>
 
-### STEP-4: Connecting to the DBMS in the Graph Data Science Playground
+#### STEP-4: Connecting to the DBMS in the Graph Data Science Playground
 
 4.1. Now, click on the Graph Apps option in the left side panel in the Neo4j Desktop app.
 
@@ -120,6 +123,9 @@ You can also view the various installation options for Neo4j on the [Neo4j Deplo
     <img src="./assets/Screenshot 2024-09-07 at 11.32.25 AM.png" alt="select neo4j default instance" width="70%"/>
 </div>
 <br/>
+
+## ** Pre-requisites ends here **
+
 
 ## Sample Data File Description for the Knowledge Graph
 
