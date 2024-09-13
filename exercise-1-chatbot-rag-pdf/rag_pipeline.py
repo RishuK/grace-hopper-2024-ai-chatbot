@@ -30,11 +30,13 @@ class ChatDocument:
             """
         )
 
+    ## processDocument() method called from chat_ui.py
     def processDocument(self, pdf_file_path: str):
         ## Accepts a filepath
         docs = PyPDFLoader(file_path=pdf_file_path).load()
 
         ## Splits the document into smaller chunks
+        ## https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/
         document_chunks = self.text_splitter.split_documents(docs)
 
         ## Filter out any complex data not supported by Chroma DB, before we pass it for vertorization
@@ -44,7 +46,7 @@ class ChatDocument:
         ## Vectorize the document chunks using FastEmeddings and store in Chroma
         chroma_vector_store = Chroma.from_documents(documents=document_chunks, embedding=FastEmbedEmbeddings())
 
-        ## Langchain retrievers: https://python.langchain.com/v0.1/docs/modules/data_connection/retrievers/
+        ## Langchain retrievers: https://python.langchain.com/v0.1/docs/modules/data_connection/retrievers/vectorstore/
         ## Configures the Vector store Retriever class for the type of search
         self.retriever = chroma_vector_store.as_retriever(
             search_type="similarity_score_threshold",

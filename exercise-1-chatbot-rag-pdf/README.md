@@ -36,12 +36,6 @@ ollama pull mistral
 
 ### Excercise execution
 
-#### Prepare yourself with concepts 
-What is RAG?
-What is LLM?
-What is vector DB? 
-What are embeddings? 
-
 #### Building RAG chat-bot 
 We will build a RAG-based chat application which will answer questions based on PDF document you will upload. 
 We will use Langchain, [Ollama](https://ollama.com/) and Streamlit UI
@@ -52,14 +46,14 @@ The RAG pipeline is divided into the following steps which will be achieved from
 ```
 rag_pipeline.py
 ```
-1. Upload document - use Elena.pdf 
-2. Split the document into smaller chunks
-3. Vectorize the document chunks using FastEmeddings and store in Chroma
-4. Configure the Vector store Retriever for the type of search
-5. Construct langchain conversion chain using LECL (LangChain Expression Language)
+1. Upload document - use Elena.pdf already provided in the folder
+2. Split the document into smaller chunks using [text splitters](https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/)
+3. Vectorize the document chunks using [FastEmeddings](https://github.com/qdrant/fastembed) and store in [Chroma](https://github.com/chroma-core/chroma)
+4. Configure the Vector store [Retriever](https://python.langchain.com/v0.1/docs/modules/data_connection/retrievers/vectorstore/) for the type of search
+5. Construct langchain conversion chain using [LECL](https://python.langchain.com/v0.1/docs/expression_language/) (LangChain Expression Language)
 
 #### StreamLit UI
-Use StreamLit APIs to demonstrate the chat bot
+Use StreamLit APIs to demonstrate the chatbot
 ```
 chat_ui.py
 ```
