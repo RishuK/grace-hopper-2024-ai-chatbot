@@ -126,6 +126,14 @@ You can also view the various installation options for Neo4j on the [Neo4j Deplo
 
 ## ** Pre-requisites ends here **
 
+# Excercise execution
+
+## RAG Chatbot with Langchain, LLM, and knowledge graph
+We will build a RAG chatbot - this time we will add a knowledge graph to enable a more intelligent chatbot, which can answer more complex user questions. 
+
+**Steps:** 
+1. Initialize Neo4j
+2. 
 
 ## Sample Data File Description for the Knowledge Graph
 
@@ -248,7 +256,7 @@ These entities and relationships help build a comprehensive knowledge graph for 
 
 ### Example Questions
 
-ere are the questions based on the Neo4j queries, formatted with question marks:
+Here are the questions based on the Neo4j queries, formatted with question marks:
 
 1. _Who is the most reliable supplier for Lumina?_
 
