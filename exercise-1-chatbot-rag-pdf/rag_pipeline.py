@@ -14,10 +14,18 @@ class ChatDocument:
     chain = None
 
     def __init__(self):
+
+        ## Instantiating our model object with relevant params for Chat Completion. 
+        ## Running Mistral LLM locally using Ollama.
+        ## https://api.python.langchain.com/en/latest/chat_models/langchain_community.chat_models.ollama.ChatOllama.html
         self.model = ChatOllama(model="mistral")
 
         ## Different text splitters available - https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/
         self.text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=20)
+
+        ## Prompt template for a language model.
+        ## It consists of a string template, which can contain system prompt, human prompt and context.
+        ## https://api.python.langchain.com/en/latest/prompts/langchain_core.prompts.prompt.PromptTemplate.html
         self.prompt_from_template = PromptTemplate.from_template(
             """
             <s> [INST] You are an assistant for question-answering tasks. Use the following pieces of retrieved context 
@@ -56,8 +64,9 @@ class ChatDocument:
             },
         )
 
-        ## Construct langchain conversion chain using LECL (LangChain Expression Language)
-        ## https://python.langchain.com/v0.1/docs/expression_language/
+        ## Construct langchain conversion chain using LCEL (LangChain Expression Language)
+        ## https://python.langchain.com/v0.1/docs/expression_language/get_started/
+        ## Build a chain using prompt + model + output parser using LCEL
         self.chain = ({"context": self.retriever, "question": RunnablePassthrough()}
                       | self.prompt_from_template
                       | self.model
