@@ -15,62 +15,33 @@ class ChatDocument:
 
     def __init__(self):
 
-        ## Instantiating our model object with relevant params for Chat Completion. 
-        ## Running Mistral LLM locally using Ollama.
-        ## https://api.python.langchain.com/en/latest/chat_models/langchain_community.chat_models.ollama.ChatOllama.html
-        self.model = ChatOllama(model="mistral")
+        ## Step 1: Initialize Mistral model
+        ## Add step 1 code here and remove 'pass'
 
-        ## Different text splitters available - https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/
-        self.text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=20)
-
-        ## Prompt template for a language model.
-        ## It consists of a string template, which can contain system prompt, human prompt and context.
-        ## https://api.python.langchain.com/en/latest/prompts/langchain_core.prompts.prompt.PromptTemplate.html
-        self.prompt_from_template = PromptTemplate.from_template(
-            """
-            <s> [INST] You are an assistant for question-answering tasks. Use the following pieces of retrieved context 
-            to answer the question. If you don't know the answer, just say that you don't know. Answer only as per what is mentioned in the document. 
-            Use three sentences
-             maximum and keep the answer concise. [/INST] </s> 
-            [INST] Question: {question} 
-            Context: {context} 
-            Answer: [/INST]
-            """
-        )
+        pass
 
     ## processDocument() method called from chat_ui.py
     def processDocument(self, pdf_file_path: str):
         ## Accepts a filepath
         docs = PyPDFLoader(file_path=pdf_file_path).load()
 
-        ## Splits the document into smaller chunks
-        ## https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/
-        document_chunks = self.text_splitter.split_documents(docs)
+        ## Step 2: Initialize the text splitter to split the uploaded document into smaller chunks
+        ## Add step 2 code here
 
         ## Filter out any complex data not supported by Chroma DB, before we pass it for vertorization
-        document_chunks = filter_complex_metadata(document_chunks)
-        print(document_chunks)
+        ## Please Comment out the following code
+        ## document_chunks = filter_complex_metadata(document_chunks)
+        ## print(document_chunks)
 
-        ## Vectorize the document chunks using FastEmeddings and store in Chroma
-        chroma_vector_store = Chroma.from_documents(documents=document_chunks, embedding=FastEmbedEmbeddings())
+        ## Step 3: Vectorize the document chunks using FastEmeddings and store in ChromaDB
+        ## Add step 3 code here
 
-        ## Langchain retrievers: https://python.langchain.com/v0.1/docs/modules/data_connection/retrievers/vectorstore/
-        ## Configures the Vector store Retriever class for the type of search
-        self.retriever = chroma_vector_store.as_retriever(
-            search_type="similarity_score_threshold",
-            search_kwargs={
-                "k": 10, ## return top 5 chunks
-                "score_threshold": 0.50, ## with scores above this value
-            },
-        )
+        ## Step 4: Configures the Vector store Retriever class for the type of search
+        ## Add step 4 code here
 
-        ## Construct langchain conversion chain using LCEL (LangChain Expression Language)
-        ## https://python.langchain.com/v0.1/docs/expression_language/get_started/
-        ## Build a chain using prompt + model + output parser using LCEL
-        self.chain = ({"context": self.retriever, "question": RunnablePassthrough()}
-                      | self.prompt_from_template
-                      | self.model
-                      | StrOutputParser())
+        ## Step 5: Build a chain of prompt template and model with an output parser using LCEL
+        ## Add step 5 code here
+
 
     def chatQuestion(self, query: str):
         if not self.chain:
