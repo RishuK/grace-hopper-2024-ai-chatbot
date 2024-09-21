@@ -13,8 +13,9 @@ poetry init
 ### Install the Dependencies:
 
 - langchain
-- streamlit - used for building POCs/prototypes
-- streamlit-chat
+- langchain_community
+- streamlit - used for building POCs/prototypes [About Streamlit](https://docs.streamlit.io/get-started)
+- streamlit-chat [Streamlit-chat Installation](https://pypi.org/project/streamlit-chat/)
 - pypdf
 - chromadb
 - fastembed
@@ -119,8 +120,9 @@ Add the following code in the method processDocument()
 #### StreamLit UI
 
 Use StreamLit APIs to demonstrate the chatbot
-https://pypi.org/project/streamlit-chat/
-https://docs.streamlit.io/get-started
+
+[Streamlit Installation](https://pypi.org/project/streamlit-chat/)
+[About Streamlit](https://docs.streamlit.io/get-started)
 
 ```
 chat_ui.py
