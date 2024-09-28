@@ -4,13 +4,7 @@
 
 ### Pre-requisites start here
 
-#### Initiatize poetry project
-
-```bash
-poetry init
-```
-
-### Install the Dependencies:
+### Pre-requisite 1: Install the Dependencies:
 
 - langchain
 - langchain_community
@@ -24,7 +18,7 @@ poetry init
 pip3 install langchain langchain_community streamlit streamlit_chat chromadb pypdf fastembed
 ```
 
-### Set up Ollama
+### Pre-requisite 2:Set up Ollama
 
 We need a LLM server which we can easily setup locally and do not have to worry about API keys!
 
