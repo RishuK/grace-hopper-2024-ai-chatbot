@@ -2,7 +2,7 @@
 
 ## ** Pre-requisites start here **
 
-### Install the Dependencies:
+### Pre-requisite 1: Install the Dependencies:
 
 - langchain
 - langchain_community
@@ -15,7 +15,7 @@
 pip3 install langchain langchain_community langchain_experimental langchain_huggingface langchain_core gradio
 ```
 
-### Neo4j Desktop Setup
+### Pre-requisite 2: Neo4j Desktop Setup
 
 You can watch this Neo4j Installation Guide Video for more reference:
 
