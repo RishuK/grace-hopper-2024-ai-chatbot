@@ -174,7 +174,6 @@ We will build a RAG chatbot - this time we will add a knowledge graph to enable 
         allowed_nodes=["Company", "Person", "Supplier", "Warehouse", "Store", "Product", "Shipment", "Customer", "External Factor"],
         allowed_relationships=["WORKS_AT", "CREATES", "SUPPLIES", "STOCKS", "DELIVERS_TO", "LOCATED_AT", "AFFECTS", "MANAGES", "CONTAINS", "HAS_CONTRACT_WITH", "HAS_INVENTORY", "INFLUENCES" ],
 )
-
 ```
 
 - Extract graph data by converting a sequence of documents into graph documents.
