@@ -21,7 +21,11 @@ https://www.python.org/downloads/macos/
 - Download and use the installer
 - Install pip3
 
-#### Step 2: Go to each excercise folder and **execute the pre-requisites under each folder below**
+#### Step 2: Clone the repository
+````
+git clone https://github.com/RishuK/grace-hopper-2024-ai-chatbot.git
+````
+#### Step 3: Go to each excercise 1 and exercise 2 folder and **execute the pre-requisites under each folder below**
 
 - excercise-1-chatbot-rag-pdf
 - excercise-2-knowledge-graph-rag
