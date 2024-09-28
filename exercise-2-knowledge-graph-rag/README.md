@@ -267,7 +267,7 @@ We will build a RAG chatbot - this time we will add a knowledge graph to enable 
    )
 ```
 
-## Execute the Exercise-2 code
+### Step-6: Execute the Exercise-2 code
 Run the below command to execute the exercise-2 code. 
 ```
     python3 knowledge-graph-rag.py
