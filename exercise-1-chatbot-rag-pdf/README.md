@@ -133,7 +133,7 @@ chat_ui.py
 Execute
 
 ```
-streamlist run chat_ui.py
+streamlit run chat_ui.py
 ```
 
 Use the pdf file - Elena.pdf in the folder and Ask questions about Elena's work
