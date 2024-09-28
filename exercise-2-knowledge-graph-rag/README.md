@@ -169,11 +169,12 @@ We will build a RAG chatbot - this time we will add a knowledge graph to enable 
   - allowed_relationships: Specifies which relationship types are allowed in the graph. Defaults to an empty list, allowing all relationship types.
 
 ```
-   llm_transformer = LLMGraphTransformer(
-      llm=llm,
-      allowed_nodes=["Company", "Person", "Knowledge Graph", "Data Source", "Supplier", "Warehouse", "Store", "Product","Shipment", "Customer", "External Factor"],
-      allowed_relationships=["WORKS_AT", "CREATES", "USES_DATA_FROM", "SUPPLIES", "STOCKS", "DELIVERS_TO", "LOCATED_AT", "PURCHASED_BY", "AFFECTS", "MANAGES", "CONTAINS", "HAS_CONTRACT_WITH", "HAS_INVENTORY", "INFLUENCES" ],
-   )
+    llm_transformer = LLMGraphTransformer(
+        llm=llm,
+        allowed_nodes=["Company", "Person", "Supplier", "Warehouse", "Store", "Product", "Shipment", "Customer", "External Factor"],
+        allowed_relationships=["WORKS_AT", "CREATES", "SUPPLIES", "STOCKS", "DELIVERS_TO", "LOCATED_AT", "AFFECTS", "MANAGES", "CONTAINS", "HAS_CONTRACT_WITH", "HAS_INVENTORY", "INFLUENCES" ],
+)
+
 ```
 
 - Extract graph data by converting a sequence of documents into graph documents.
