@@ -25,7 +25,8 @@ https://www.python.org/downloads/macos/
 ````
 git clone https://github.com/RishuK/grace-hopper-2024-ai-chatbot.git
 ````
-#### Step 3: Go to each excercise 1 and exercise 2 folder and **execute the pre-requisites under each folder below**
+#### Step 3: Execute Pre-requisite-1 and Pre-requisite-2 for both the exercises
+Go to each excercise 1 and exercise 2 folder and **execute the pre-requisites under each folder below**
 
 - excercise-1-chatbot-rag-pdf
 - excercise-2-knowledge-graph-rag
