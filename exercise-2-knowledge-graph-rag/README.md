@@ -267,6 +267,12 @@ We will build a RAG chatbot - this time we will add a knowledge graph to enable 
    )
 ```
 
+## Execute the Exercise-2 code
+Run the below command to execute the exercise-2 code.
+```
+    python3 knowledge-graph-rag.py
+```
+
 ## Sample Data File Description for the Knowledge Graph
 
 Here’s an explanation of the entities and relationships for the Lumina knowledge graph:
