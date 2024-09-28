@@ -67,8 +67,8 @@ llm = Ollama(model="llama3")
 # https://api.python.langchain.com/en/latest/graph_transformers/langchain_experimental.graph_transformers.llm.LLMGraphTransformer.html
 llm_transformer = LLMGraphTransformer(
     llm=llm,
-    allowed_nodes=["Company", "Person", "Knowledge Graph", "Data Source", "Supplier", "Warehouse", "Store", "Product", "Shipment", "Customer", "External Factor"], # Specifies which node types are allowed in the graph. Defaults to an empty list, allowing all node types.
-    allowed_relationships=["WORKS_AT", "CREATES", "USES_DATA_FROM", "SUPPLIES", "STOCKS", "DELIVERS_TO", "LOCATED_AT", "PURCHASED_BY", "AFFECTS", "MANAGES", "CONTAINS", "HAS_CONTRACT_WITH", "HAS_INVENTORY", "INFLUENCES" ], # Specifies which relationship types are allowed in the graph. Defaults to an empty list, allowing all relationship types.
+    allowed_nodes=["Company", "Person", "Supplier", "Warehouse", "Store", "Product", "Shipment", "Customer", "External Factor"], # Specifies which node types are allowed in the graph. Defaults to an empty list, allowing all node types.
+    allowed_relationships=["WORKS_AT", "CREATES", "SUPPLIES", "STOCKS", "DELIVERS_TO", "LOCATED_AT", "AFFECTS", "MANAGES", "CONTAINS", "HAS_CONTRACT_WITH", "HAS_INVENTORY", "INFLUENCES" ], # Specifies which relationship types are allowed in the graph. Defaults to an empty list, allowing all relationship types.
 )
 
 ## Filter out any complex data or metadata types that are not supported for a vector store, before we pass it for vertorization
