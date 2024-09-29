@@ -33,9 +33,8 @@ ollama pull llama3.1:8b
 
 ### Pre-requisite 3: Neo4j Desktop Setup
 
-You can watch this Neo4j Installation Guide Video for more reference:
-
-[![Neo4j Installation Guide Video](https://img.youtube.com/vi/pPhJi9twN9Q/0.jpg)](https://www.youtube.com/watch?v=pPhJi9twN9Q)
+The step-by-step process for installing and setting up Neo4j Desktop for this exercise are listed below. 
+You can also watch this Neo4j Installation Guide Video for more reference: [Neo4j Installation Guide Video](https://youtu.be/pPhJi9twN9Q?si=rzfvD6OWd33VF84C)
 
 #### STEP-1: Installation and Local Setup of Neo4j Desktop Setup
 
@@ -44,7 +43,7 @@ You can watch this Neo4j Installation Guide Video for more reference:
 Fill the required form with basic details on the website to start the download.
 
 <div> 
-    <img src="./assets/Screenshot 2024-09-07 at 9.16.36 AM.png" alt="download neo4j desktop" width="70%"/>
+    <img src="./assets/Screenshot 2024-09-07 at 9.16.36 AM.png" alt="download neo4j desktop" width="50%"/>
 </div>
 <br/>
 
@@ -53,33 +52,33 @@ You can also view the various installation options for Neo4j on the [Neo4j Deplo
 1.2. Copy the Neo4j Desktop Activation Key shown in the browser after downloading the Neo4j Desktop app.
 
 <div> 
-    <img src="./assets/Screenshot 2024-09-07 at 9.17.28 AM.png" alt="neo4j desktop activation key step" width="70%"/>
+    <img src="./assets/Screenshot 2024-09-07 at 9.17.28 AM.png" alt="neo4j desktop activation key step" width="50%"/>
 </div>
 <br/>
 
 1.3. Open the downloaded .dmg installer file on your local for installing Neo4j Desktop.
 
 <div> 
-    <img src="./assets/Screenshot 2024-09-07 at 9.32.02 AM-1.png" alt="open the downloaded .dmg installer file" width="70%"/>
+    <img src="./assets/Screenshot 2024-09-07 at 9.32.02 AM-1.png" alt="open the downloaded .dmg installer file" width="50%"/>
 </div>
 <br/>
 
 1.4. Paste the Neo4j Desktop Activation Key when asked during the installation steps.
 
 <div> 
-    <img src="./assets/Screenshot 2024-09-07 at 9.33.01 AM.png" alt="paste the neo4j desktop activation key" width="70%"/>
+    <img src="./assets/Screenshot 2024-09-07 at 9.33.01 AM.png" alt="paste the neo4j desktop activation key" width="50%"/>
 </div>
 <br/>
 
 <div> 
-    <img src="./assets/Screenshot 2024-09-07 at 9.39.47 AM.png" alt="click on activate" width="70%"/>
+    <img src="./assets/Screenshot 2024-09-07 at 9.39.47 AM.png" alt="click on activate" width="50%"/>
 </div>
 <br/>
 
 1.5. Wait for few seconds or minutes for the installation to get completed.
 
 <div> 
-    <img src="./assets/Screenshot 2024-09-07 at 9.33.14 AM.png" alt="wait for installation completion" width="70%"/>
+    <img src="./assets/Screenshot 2024-09-07 at 9.33.14 AM.png" alt="wait for installation completion" width="50%"/>
 </div>
 <br/>
 
@@ -88,21 +87,21 @@ You can also view the various installation options for Neo4j on the [Neo4j Deplo
 2.1. Create a new project in Neo4j Desktop.
 
 <div> 
-    <img src="./assets/Screenshot 2024-09-09 at 11.55.11 PM.png" alt="create new project" width="70%"/>
+    <img src="./assets/Screenshot 2024-09-09 at 11.55.11 PM.png" alt="create new project" width="50%"/>
 </div>
 <br/>
 
 2.2. Create a local DBMS (5.20.x) named Graph DBMS in this new project. Set the password and remember it.
 
 <div> 
-    <img src="./assets/Screenshot 2024-09-09 at 11.25.49 PM.png" alt="local DBMS setup" width="70%"/>
+    <img src="./assets/Screenshot 2024-09-09 at 11.25.49 PM.png" alt="local DBMS setup" width="50%"/>
 </div>
 <br/>
 
 2.3. Click on Start the DBMS. It should start showing Active status once started along with the neo4j (default) database instance inside this DBMS.
 
 <div> 
-    <img src="./assets/Screenshot 2024-09-09 at 11.27.34 PM.png" alt="start DBMS" width="70%"/>
+    <img src="./assets/Screenshot 2024-09-09 at 11.27.34 PM.png" alt="start DBMS" width="50%"/>
 </div>
 
 #### STEP-3: Install the required plugins
@@ -112,14 +111,14 @@ You can also view the various installation options for Neo4j on the [Neo4j Deplo
 3.2. Install the APOC (Awesome Procedures on Cypher) plugin. The [APOC library](https://neo4j.com/docs/apoc/5/overview/) consists of many functions to help with various different tasks in areas like collections manipulation, graph algorithms, and data conversion.
 
 <div> 
-    <img src="./assets/Screenshot 2024-09-09 at 11.30.02 PM.png" alt="connect to neo4j server" width="70%"/>
+    <img src="./assets/Screenshot 2024-09-09 at 11.30.02 PM.png" alt="connect to neo4j server" width="50%"/>
 </div>
 <br/>
 
 3.3. Install the GDS (Graph Data Science) plugin. The [Neo4j Graph Data Science (GDS) library](https://neo4j.com/docs/graph-data-science/current/?ref=desktop) provides extensive analytical capabilities centered around graph algorithms.
 
 <div> 
-    <img src="./assets/Screenshot 2024-09-09 at 11.30.09 PM.png" alt="connect to neo4j server" width="70%"/>
+    <img src="./assets/Screenshot 2024-09-09 at 11.30.09 PM.png" alt="connect to neo4j server" width="50%"/>
 </div>
 <br/>
 
@@ -134,21 +133,21 @@ You can also view the various installation options for Neo4j on the [Neo4j Deplo
 4.4. Ensure all checks are passing and connect to the local neo4j server.
 
 <div> 
-    <img src="./assets/Screenshot 2024-09-07 at 10.58.33 AM.png" alt="connect to neo4j server" width="70%"/>
+    <img src="./assets/Screenshot 2024-09-07 at 10.58.33 AM.png" alt="connect to neo4j server" width="50%"/>
 </div>
 <br/>
 
 4.5. Select the pre-selected neo4j (default) database instance
 
 <div> 
-    <img src="./assets/Screenshot 2024-09-07 at 11.32.09 AM.png" alt="select neo4j default instance" width="70%"/>
+    <img src="./assets/Screenshot 2024-09-07 at 11.32.09 AM.png" alt="select neo4j default instance" width="50%"/>
 </div>
 <br/>
 
 4.6. Kudos, the local Neo4j Database Connection is done, you're good to go ahead.
 
 <div> 
-    <img src="./assets/Screenshot 2024-09-07 at 11.32.25 AM.png" alt="select neo4j default instance" width="70%"/>
+    <img src="./assets/Screenshot 2024-09-07 at 11.32.25 AM.png" alt="select neo4j default instance" width="50%"/>
 </div>
 <br/>
 
