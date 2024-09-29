@@ -12,16 +12,21 @@ Link to the GHC 2024 Workshop Session: [GHC Workshop Link](https://ghc.anitab.or
 
 ### Steps:
 
-#### Step 1: Install pip3 and python
+#### Step 1: Install python3 (and pip3)
 
 ##### python version: 3.12.5
 
 https://www.python.org/downloads/macos/
 
 - Download and use the installer
-- Install pip3
+- pip3 should get auto-installed with python. 
 
-#### Step 2: Go to each excercise folder and **execute the pre-requisites under each folder below**
+#### Step 2: Clone the repository
+````
+git clone https://github.com/RishuK/grace-hopper-2024-ai-chatbot.git
+````
+
+#### Step 3: Go to each excercise folder and **execute the pre-requisites under each folder below**
 
 - excercise-1-chatbot-rag-pdf
 - excercise-2-knowledge-graph-rag
@@ -37,8 +42,12 @@ These workshop contains the following branches:
 
 Steps:
 
-1. Clone the repository and checkout branch 'excercies'
-2. We will work through the following excercises. Each excercise has its README file that will guide you
+1. Checkout branch 'exercies'
+````
+git checkout exercises
+````
+
+2. We will work through the following exercises. Each exercise has its README file that will guide you step by step
 
 #### Exercise 1 : Building RAG Chatbot using vector store
 [Exercise-1 Readme](./exercise-1-chatbot-rag-pdf/README.md)
