@@ -1,5 +1,12 @@
 # RAG Chatbot with Knowledge Graph
 
+Contents: 
+- [Install Prerequisites](#-pre-requisites-start-here-)
+    - [Install the Dependencies](#install-the-dependencies)    
+    - [Neo4j Desktop Setup](#neo4j-desktop-setup)
+- [Exercise-2 Execution Steps](#excercise-execution)
+- [Sample Data File Description for the Knowledge Graph](#sample-data-file-description-for-the-knowledge-graph)
+
 ## ** Pre-requisites start here **
 
 ### Install the Dependencies:
@@ -7,12 +14,19 @@
 - langchain
 - langchain_community
 - langchain_experimental
-- langchain_huggingface
+- langchain_ollama
 - langchain_core
 - gradio [About Gradio](https://www.gradio.app/guides/the-interface-class)
 
 ```bash
-pip3 install langchain langchain_community langchain_experimental langchain_huggingface langchain_core gradio
+pip3 install langchain langchain_community langchain_experimental langchain_ollama langchain_core gradio
+```
+
+### Run Llama3.1 via Ollama
+
+We can run a compact model - Llama3.1 8b
+```
+ollama pull llama3.1:8b
 ```
 
 ### Neo4j Desktop Setup
