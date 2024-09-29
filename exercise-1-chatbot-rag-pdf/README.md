@@ -109,6 +109,8 @@ Add the following code in the method processDocument()
 ```
 
 #### Step 5: Build a langchain conversion chain using prompt template and model with an output parser using [LCEL](https://python.langchain.com/v0.1/docs/expression_language/get_started/)
+(Langchain expression language)
+
 
 ```
     self.chain = ({"context": self.retriever, "question": RunnablePassthrough()}
