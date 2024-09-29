@@ -42,7 +42,7 @@ These workshop contains the following branches:
 
 Steps:
 
-1. Checkout branch 'exercies'
+1. Checkout branch 'exercises'
 ````
 git checkout exercises
 ````
