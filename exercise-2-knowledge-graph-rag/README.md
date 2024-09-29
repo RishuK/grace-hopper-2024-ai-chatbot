@@ -2,14 +2,16 @@
 
 ## Contents: 
 - [Install Prerequisites](#-pre-requisites-start-here-)
-    - [Install the Dependencies](#install-the-dependencies)    
-    - [Neo4j Desktop Setup](#neo4j-desktop-setup)
+    - [Install the Dependencies](#pre-requisite-1-install-the-dependencies)
+    - [Pull Llama3.1 via Ollama](#pre-requisite-2-run-llama31-via-ollama)
+    - [Neo4j Desktop Setup](#pre-requisite-3-neo4j-desktop-setup)
 - [Exercise-2 Execution Steps](#excercise-execution)
 - [Sample Data File Description for the Knowledge Graph](#sample-data-file-description-for-the-knowledge-graph)
+  
 
 ## ** Pre-requisites start here **
 
-### Install the Dependencies:
+### Pre-requisite 1: Install the Dependencies:
 
 - langchain
 - langchain_community
@@ -22,14 +24,14 @@
 pip3 install langchain langchain_community langchain_experimental langchain_ollama langchain_core gradio
 ```
 
-### Run Llama3.1 via Ollama
+### Pre-requisite 2: Run Llama3.1 via Ollama
 
 We can run a compact model - Llama3.1 8b
 ```
 ollama pull llama3.1:8b
 ```
 
-### Neo4j Desktop Setup
+### Pre-requisite 3: Neo4j Desktop Setup
 
 You can watch this Neo4j Installation Guide Video for more reference:
 
