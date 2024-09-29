@@ -1,6 +1,6 @@
 # RAG Chatbot with Knowledge Graph
 
-Contents: 
+## Contents: 
 - [Install Prerequisites](#-pre-requisites-start-here-)
     - [Install the Dependencies](#install-the-dependencies)    
     - [Neo4j Desktop Setup](#neo4j-desktop-setup)
