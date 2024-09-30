@@ -4,13 +4,7 @@
 
 ### Pre-requisites start here
 
-#### Initiatize poetry project
-
-```bash
-poetry init
-```
-
-### Install the Dependencies:
+### Pre-requisite 1: Install the Dependencies:
 
 - langchain
 - langchain_community
@@ -24,7 +18,7 @@ poetry init
 pip3 install langchain langchain_community streamlit streamlit_chat chromadb pypdf fastembed
 ```
 
-### Set up Ollama
+### Pre-requisite 2:Set up Ollama
 
 We need a LLM server which we can easily setup locally and do not have to worry about API keys!
 
@@ -109,8 +103,6 @@ Add the following code in the method processDocument()
 ```
 
 #### Step 5: Build a langchain conversion chain using prompt template and model with an output parser using [LCEL](https://python.langchain.com/v0.1/docs/expression_language/get_started/)
-(Langchain expression language)
-
 
 ```
     self.chain = ({"context": self.retriever, "question": RunnablePassthrough()}
@@ -138,4 +130,4 @@ Execute
 streamlit run chat_ui.py
 ```
 
-Use the pdf file - Elena.pdf in the folder and Ask questions about Elena's work
+Use the pdf file - Lumina.pdf (or Elena.pdf) in the folder and Ask questions about Lumina, the startup (or Elena)
