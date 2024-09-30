@@ -1,12 +1,11 @@
 from langchain_community.graphs import Neo4jGraph
 from langchain.docstore.document import Document
-from langchain_community.llms import Ollama
-from langchain_community.vectorstores.utils import filter_complex_metadata
+from langchain_community.chat_models import ChatOllama
 from langchain_experimental.graph_transformers import LLMGraphTransformer
-from langchain.text_splitter import TokenTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Neo4jVector
 from langchain.chains import RetrievalQA
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_ollama import OllamaEmbeddings
 from langchain_core.prompts import PromptTemplate
 import gradio as gr
 import os
@@ -28,16 +27,18 @@ try:
     with open(file_path, "r", encoding='utf-8') as file:
         text = file.read()
 
-    # Initialize TokenTextSplitter with desired parameters
-    # Read more about it here: https://api.python.langchain.com/en/latest/base/langchain_text_splitters.base.TokenTextSplitter.html 
-    # TokenTextSplitter breaks down text into smaller chunks for easier processing and retrieval.
-    # It splits a raw text string by first converting the text into tokens, then splits these tokens into chunks and converts the tokens within a single chunk back into text.
+    # Initialize RecursiveCharacterTextSplitter with desired parameters
+    # Read more about it here: https://sj-langchain.readthedocs.io/en/latest/text_splitter/langchain.text_splitter.RecursiveCharacterTextSplitter.html 
+    # RecursiveCharacterTextSplitter recursively breaks down text into smaller chunks for easier processing and retrieval.
+    # This is the recommended text splitter for generic text. 
+    # It is parameterized by a list of characters, the default list is ["\n\n", "\n", " ", ""]. It tries to split on them in order until the chunks are small enough. 
+    # This has the effect of trying to keep all paragraphs (and then sentences, and then words) together as long as possible, as those would generically seem to be the strongest semantically related pieces of text.
     # Adjust chunk_size and chunk_overlap according to your needs.
     # The chunk size should be at least as large as the average length of your queries.
     # The chunk overlap should be smaller than the chunk size to maintain context.
-    text_splitter = TokenTextSplitter(
-        chunk_size=200,  # Adjust chunk size as needed
-        chunk_overlap=20  # Adjust overlap to maintain context
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=512,  # Adjust chunk size as needed
+        chunk_overlap=24  # Adjust overlap to maintain context
     )
 
     # Convert the formatted text into a list of Document objects
@@ -59,22 +60,21 @@ try:
 except FileNotFoundError:
     print(f"Error: File '{file_path}' not found.")
 
-# Using Ollama to locally run large language models. 
-# https://api.python.langchain.com/en/latest/llms/langchain_community.llms.ollama.Ollama.html
-llm = Ollama(model="llama3")
+# Instantiating our model object with relevant params for Chat Completion. 
+# Running LLaMA3.1-8b LLM locally using Ollama.
+# https://api.python.langchain.com/en/latest/chat_models/langchain_community.chat_models.ollama.ChatOllama.html
+llm = ChatOllama(
+    model="llama3.1:8b", # LLM Model running locally using Ollama
+    temperature=0.1, # Temperature parameter for LLM model, ranges from 0 to 1, controls the randomness of the output.
+)
 
 # LLMGraphTransformer converts textual documents into graph-based documents using LLM.
 # https://api.python.langchain.com/en/latest/graph_transformers/langchain_experimental.graph_transformers.llm.LLMGraphTransformer.html
 llm_transformer = LLMGraphTransformer(
     llm=llm,
-    allowed_nodes=["Company", "Person", "Supplier", "Warehouse", "Store", "Product", "Shipment", "Customer", "External Factor"], # Specifies which node types are allowed in the graph. Defaults to an empty list, allowing all node types.
-    allowed_relationships=["WORKS_AT", "CREATES", "SUPPLIES", "STOCKS", "DELIVERS_TO", "LOCATED_AT", "AFFECTS", "MANAGES", "CONTAINS", "HAS_CONTRACT_WITH", "HAS_INVENTORY", "INFLUENCES" ], # Specifies which relationship types are allowed in the graph. Defaults to an empty list, allowing all relationship types.
+    allowed_nodes=["Company", "Person", "Product", "Supplier", "Warehouse", "Store", "Shipment", "Customer", "External Factor", "Supply Chain", "Location", "Weather Condition", "Holiday", "Region", "Sales Trend"], # Specifies which node types are allowed in the graph. Defaults to an empty list, allowing all node types.
+    allowed_relationships=["WORKS_FOR", "CREATES", "SUPPLIES", "STOCKS", "DELIVERS_TO", "LOCATED_AT", "AFFECTED_BY", "AFFECTS", "MANAGES", "CONTAINS", "HAS_CONTRACT_WITH", "HAS_INVENTORY", "INFLUENCES" ], # Specifies which relationship types are allowed in the graph. Defaults to an empty list, allowing all relationship types.
 )
-
-## Filter out any complex data or metadata types that are not supported for a vector store, before we pass it for vertorization
-# https://api.python.langchain.com/en/latest/vectorstores/langchain_community.vectorstores.utils.filter_complex_metadata.html
-document_chunks = filter_complex_metadata(documents)
-
 
 # Extract graph data by converting a sequence of documents into graph documents.
 # https://api.python.langchain.com/en/latest/graph_transformers/langchain_experimental.graph_transformers.llm.LLMGraphTransformer.html#langchain_experimental.graph_transformers.llm.LLMGraphTransformer.convert_to_graph_documents
@@ -86,6 +86,15 @@ print(f"Nodes:{graph_documents[0].nodes}")
 print("-----------------------------------------------------------------")
 print(f"Relationships:{graph_documents[0].relationships}")
 
+# Print all the nodes and relationships of the generated graph 
+for graph_doc in graph_documents:
+    print("\nNodes:")
+    for node in graph_doc.nodes:
+        print(f"Id: {node.id}, Type: {node.type}")
+    print("\nRelationships:")
+    for relationship in graph_doc.relationships:
+        print(f"Source: {relationship.source}, Target: {relationship.target}, Type: {relationship.type}")
+
 # Store to neo4j
 # This method constructs nodes and relationships in the graph based on the provided GraphDocument objects.
 # https://api.python.langchain.com/en/latest/graphs/langchain_community.graphs.neo4j_graph.Neo4jGraph.html#langchain_community.graphs.neo4j_graph.Neo4jGraph.add_graph_documents
@@ -96,17 +105,16 @@ graph.add_graph_documents(
 )
 print("Documents successfully added to Graph DataBase")
 
-# Load the HuggingFace sentence_transformers embedding models.
-# https://api.python.langchain.com/en/latest/embeddings/langchain_huggingface.embeddings.huggingface.HuggingFaceEmbeddings.html
-# https://huggingface.co/BAAI/bge-base-en-v1.5
-embeddings = HuggingFaceEmbeddings(model_name  = "BAAI/bge-base-en-v1.5")
+# Instantiate the Ollama embedding model and generate embeddings using the locally running LLaMA3.1-8b
+# https://python.langchain.com/api_reference/ollama/embeddings/langchain_ollama.embeddings.OllamaEmbeddings.html 
+local_embeddings = OllamaEmbeddings(model="llama3.1:8b")
 
 # Initialize and return a Neo4jVector instance from existing graph.
 # This method initializes and returns a Neo4jVector instance using the provided parameters and the existing graph. 
 # It validates the existence of the indices and creates new ones if they don’t exist.
 # https://api.python.langchain.com/en/latest/vectorstores/langchain_community.vectorstores.neo4j_vector.Neo4jVector.html#langchain_community.vectorstores.neo4j_vector.Neo4jVector.from_existing_graph
 vector_index = Neo4jVector.from_existing_graph(
-    embeddings,
+    embedding=local_embeddings,
     search_type="hybrid",
     node_label="Document",
     text_node_properties=["text"],
@@ -117,9 +125,6 @@ vector_index = Neo4jVector.from_existing_graph(
 qa_chain = RetrievalQA.from_chain_type(
     llm, retriever=vector_index.as_retriever()
 )
-
-# See the default prompt template used for the retrieval qa chain
-print(qa_chain.combine_documents_chain.llm_chain.prompt.template)
 
 # Creating custom prompt template
 # A prompt template consists of a string template.
