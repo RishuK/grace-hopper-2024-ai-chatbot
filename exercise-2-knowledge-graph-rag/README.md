@@ -1,10 +1,11 @@
 # RAG Chatbot with Knowledge Graph
 
-## Contents: 
+## Contents:
+
 - [Install Prerequisites](#-pre-requisites-start-here-)
-    - [Install the Dependencies](#pre-requisite-1-install-the-dependencies)
-    - [Pull Llama3.1 via Ollama](#pre-requisite-2-run-llama31-via-ollama)
-    - [Neo4j Desktop Setup](#pre-requisite-3-neo4j-desktop-setup)
+  - [Install the Dependencies](#pre-requisite-1-install-the-dependencies)
+  - [Pull Llama3.1 via Ollama](#pre-requisite-2-run-llama31-via-ollama)
+  - [Neo4j Desktop Setup](#pre-requisite-3-neo4j-desktop-setup)
 - [Exercise-2 Execution Steps](#excercise-execution)
 - [Sample Data File Description for the Knowledge Graph](#sample-data-file-description-for-the-knowledge-graph)
 
@@ -26,15 +27,15 @@ pip3 install langchain langchain_community langchain_experimental langchain_olla
 ### Pre-requisite 2: Run Llama3.1 via Ollama
 
 We can run a compact model - Llama3.1 8b
+
 ```
 ollama pull llama3.1:8b
 ```
 
 ### Pre-requisite 3: Neo4j Desktop Setup
 
-The step-by-step process for installing and setting up Neo4j Desktop for this exercise are listed below. 
+The step-by-step process for installing and setting up Neo4j Desktop for this exercise are listed below.
 You can also watch this Neo4j Installation Guide Video for more reference: [Neo4j Installation Guide Video](https://youtu.be/pPhJi9twN9Q?si=rzfvD6OWd33VF84C)
-
 
 #### STEP-1: Installation and Local Setup of Neo4j Desktop Setup
 
@@ -184,11 +185,11 @@ We will build a RAG chatbot - this time we will add a knowledge graph to enable 
   - allowed_relationships: Specifies which relationship types are allowed in the graph. Defaults to an empty list, allowing all relationship types.
 
 ```
-    llm_transformer = LLMGraphTransformer(
+   llm_transformer = LLMGraphTransformer(
         llm=llm,
-        allowed_nodes=["Company", "Person", "Supplier", "Warehouse", "Store", "Product", "Shipment", "Customer", "External Factor"],
-        allowed_relationships=["WORKS_AT", "CREATES", "SUPPLIES", "STOCKS", "DELIVERS_TO", "LOCATED_AT", "AFFECTS", "MANAGES", "CONTAINS", "HAS_CONTRACT_WITH", "HAS_INVENTORY", "INFLUENCES" ],
-)
+        allowed_nodes=["Company", "Person", "Product", "Supplier", "Warehouse", "Store", "Shipment", "Customer", "External Factor", "Supply Chain", "Location", "Weather Condition", "Holiday", "Region", "Sales Trend"],
+        allowed_relationships=["WORKS_FOR", "CREATES", "SUPPLIES", "STOCKS", "DELIVERS_TO", "LOCATED_AT", "AFFECTED_BY", "AFFECTS", "MANAGES", "CONTAINS", "HAS_CONTRACT_WITH", "HAS_INVENTORY", "INFLUENCES" ],
+    )
 ```
 
 - Extract graph data by converting a sequence of documents into graph documents.
@@ -213,13 +214,13 @@ We will build a RAG chatbot - this time we will add a knowledge graph to enable 
    print("Documents successfully added to Graph DataBase")
 ```
 
-### Step-4: Initialize and return a Neo4jVector instance from existing graph using HuggingFaceEmbeddings
+### Step-4: Initialize and return a Neo4jVector instance from existing graph using OllamaEmbeddings
 
-- Load the HuggingFace sentence_transformers embedding models.
-  [HuggingFaceEmbeddings BAAI/bge-base-en-v1.5](https://api.python.langchain.com/en/latest/embeddings/langchain_huggingface.embeddings.huggingface.HuggingFaceEmbeddings.html#https://huggingface.co/BAAI/bge-base-en-v1.5)
+- Instantiate the Ollama embedding model and generate embeddings using the locally running LLaMA3.1-8b
+  [About OllamaEmbeddings](https://python.langchain.com/api_reference/ollama/embeddings/langchain_ollama.embeddings.OllamaEmbeddings.html)
 
 ```
-   embeddings = HuggingFaceEmbeddings(model_name  = "BAAI/bge-base-en-v1.5")
+   local_embeddings = OllamaEmbeddings(model="llama3.1:8b")
 ```
 
 - Initialize and return a Neo4jVector instance from existing graph. This method initializes and returns a Neo4jVector instance using the provided parameters and the existing graph. It validates the existence of the indices and creates new ones if they don’t exist.
@@ -227,7 +228,7 @@ We will build a RAG chatbot - this time we will add a knowledge graph to enable 
 
 ```
    vector_index = Neo4jVector.from_existing_graph(
-      embeddings,
+      embedding=local_embeddings,
       search_type="hybrid",
       node_label="Document",
       text_node_properties=["text"],
@@ -283,7 +284,9 @@ We will build a RAG chatbot - this time we will add a knowledge graph to enable 
 ```
 
 ### Step-6: Execute the Exercise-2 code
+
 Run the below command to execute the exercise-2 code.
+
 ```
     python3 knowledge-graph-rag.py
 ```

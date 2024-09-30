@@ -1,11 +1,11 @@
 from langchain_community.graphs import Neo4jGraph
 from langchain.docstore.document import Document
-from langchain_community.llms import Ollama
+from langchain_community.chat_models import ChatOllama
 from langchain_experimental.graph_transformers import LLMGraphTransformer
-from langchain.text_splitter import TokenTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Neo4jVector
 from langchain.chains import RetrievalQA
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_ollama import OllamaEmbeddings
 from langchain_core.prompts import PromptTemplate
 import gradio as gr
 import os
@@ -26,16 +26,18 @@ try:
     with open(file_path, "r", encoding='utf-8') as file:
         text = file.read()
 
-    # Initialize TokenTextSplitter with desired parameters
-    # Read more about it here: https://api.python.langchain.com/en/latest/base/langchain_text_splitters.base.TokenTextSplitter.html 
-    # TokenTextSplitter breaks down text into smaller chunks for easier processing and retrieval.
-    # It splits a raw text string by first converting the text into tokens, then splits these tokens into chunks and converts the tokens within a single chunk back into text.
+    # Initialize RecursiveCharacterTextSplitter with desired parameters
+    # Read more about it here: https://sj-langchain.readthedocs.io/en/latest/text_splitter/langchain.text_splitter.RecursiveCharacterTextSplitter.html 
+    # RecursiveCharacterTextSplitter recursively breaks down text into smaller chunks for easier processing and retrieval.
+    # This is the recommended text splitter for generic text. 
+    # It is parameterized by a list of characters, the default list is ["\n\n", "\n", " ", ""]. It tries to split on them in order until the chunks are small enough. 
+    # This has the effect of trying to keep all paragraphs (and then sentences, and then words) together as long as possible, as those would generically seem to be the strongest semantically related pieces of text.
     # Adjust chunk_size and chunk_overlap according to your needs.
     # The chunk size should be at least as large as the average length of your queries.
     # The chunk overlap should be smaller than the chunk size to maintain context.
-    text_splitter = TokenTextSplitter(
-        chunk_size=200,  # Adjust chunk size as needed
-        chunk_overlap=20  # Adjust overlap to maintain context
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=512,  # Adjust chunk size as needed
+        chunk_overlap=24  # Adjust overlap to maintain context
     )
 
     # Convert the formatted text into a list of Document objects
@@ -57,9 +59,13 @@ try:
 except FileNotFoundError:
     print(f"Error: File '{file_path}' not found.")
 
-# Using Ollama to locally run large language models. Here, we are using Llama3 LLM. 
-# https://api.python.langchain.com/en/latest/llms/langchain_community.llms.ollama.Ollama.html
-llm = Ollama(model="llama3")
+# Instantiating our model object with relevant params for Chat Completion. 
+# Running LLaMA3.1-8b LLM locally using Ollama.
+# https://api.python.langchain.com/en/latest/chat_models/langchain_community.chat_models.ollama.ChatOllama.html
+llm = ChatOllama(
+    model="llama3.1:8b", # LLM Model running locally using Ollama
+    temperature=0.1, # Temperature parameter for LLM model, ranges from 0 to 1, controls the randomness of the output.
+)
 
 ## Step-2: Convert textual documents into graph-based documents using LLMGraphTransformer
 ## Add step-2 code here and uncomment the below print lines to see the generated graph details.
@@ -70,12 +76,20 @@ llm = Ollama(model="llama3")
 # print("-----------------------------------------------------------------")
 # print(f"Relationships:{graph_documents[0].relationships}")
 
+# # Print all the nodes and relationships of the generated graph 
+# for graph_doc in graph_documents:
+#     print("\nNodes:")
+#     for node in graph_doc.nodes:
+#         print(f"Id: {node.id}, Type: {node.type}")
+#     print("\nRelationships:")
+#     for relationship in graph_doc.relationships:
+#         print(f"Source: {relationship.source}, Target: {relationship.target}, Type: {relationship.type}")
+
 ## Step-3: Store to neo4j
 ## Add step-3 code here. 
 
-## Step-4: Initialize and return a Neo4jVector instance from existing graph using HuggingFaceEmbeddings.
+## Step-4: Initialize and return a Neo4jVector instance from existing graph using OllamaEmbeddings.
 ## Add step-4 code here.
-
 
 ## Step-5: Create a RetrievalQA chain using custom prompt template and the Neo4jVector as the retriever.
 ## Add step-5 code here. 
