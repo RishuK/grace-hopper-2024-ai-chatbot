@@ -238,21 +238,6 @@ We will build a RAG chatbot - this time we will add a knowledge graph to enable 
 
 ### Step-5: Create a RetrievalQA chain for question-answering
 
-- Create a RetrievalQA chain using the Neo4jVector as the retriever.
-  [About RetrievalQA](https://api.python.langchain.com/en/latest/chains/langchain.chains.retrieval_qa.base.RetrievalQA.html)
-
-```
-   qa_chain = RetrievalQA.from_chain_type(
-      llm, retriever=vector_index.as_retriever()
-   )
-```
-
-- See the default prompt template used for the retrieval qa chain
-
-```
-   print(qa_chain.combine_documents_chain.llm_chain.prompt.template)
-```
-
 - Create custom prompt template. A prompt template consists of a string template, it can contain the system prompt, human question and context.
 
 ```
@@ -277,9 +262,9 @@ We will build a RAG chatbot - this time we will add a knowledge graph to enable 
 
 ```
    qa_chain = RetrievalQA.from_chain_type(
-   llm,
-   retriever=vector_index.as_retriever(),
-   chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
+      llm,
+      retriever=vector_index.as_retriever(),
+      chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
    )
 ```
 
