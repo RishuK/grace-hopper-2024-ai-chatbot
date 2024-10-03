@@ -80,7 +80,7 @@ Add the following code in the method processDocument()
     self.retriever = chroma_vector_store.as_retriever(
             search_type="similarity_score_threshold",
             search_kwargs={
-                "k": 10, ## return top 5 chunks
+                "k": 10, ## return top k chunks
                 "score_threshold": 0.50, ## with scores above this value
             },
         )
