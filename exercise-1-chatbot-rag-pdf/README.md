@@ -35,6 +35,12 @@ ollama pull mistral
 
 ### Excercise execution
 
+#### Architecture diagram
+<div> 
+    <img src="./assets/example-1-diagram.png" width="50%"/>
+</div>
+<br/>
+
 #### Building RAG chat-bot
 
 We will build a RAG-based chat application which will answer questions based on PDF document you will upload.
@@ -80,7 +86,7 @@ Add the following code in the method processDocument()
     self.retriever = chroma_vector_store.as_retriever(
             search_type="similarity_score_threshold",
             search_kwargs={
-                "k": 10, ## return top 5 chunks
+                "k": 10, ## return top k chunks
                 "score_threshold": 0.50, ## with scores above this value
             },
         )
@@ -130,4 +136,10 @@ Execute
 streamlit run chat_ui.py
 ```
 
-Use the pdf file - Elena.pdf in the folder and Ask questions about Elena's work
+Use the pdf file - Lumina.pdf (or Elena.pdf) in the folder and Ask questions about Lumina, the startup (or Elena)
+
+#### Final output
+<div> 
+    <img src="./assets/chatbot-image.png" width="50%"/>
+</div>
+<br/>
