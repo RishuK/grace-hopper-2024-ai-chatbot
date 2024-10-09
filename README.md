@@ -8,6 +8,7 @@ At the end of the workshop, you will have a working AI-powered chatbot, which wi
 
 Link to the GHC 2024 Workshop Session: [GHC Workshop Link](https://ghc.anitab.org/session-catalog/?search.sessiontype=1712687033982003Uicv&search.sessiontracks=1715091731850001IqQr&search.experiencetype=option_1713202494133#/session/1717218930814001YQKl)
 
+# Option 1 - set up your local IDE with python, dependencies and clone the repo
 ## Pre-requisites Workspace setup starts here
 
 ### Steps:
@@ -32,6 +33,9 @@ git clone https://github.com/RishuK/grace-hopper-2024-ai-chatbot.git
 - excercise-2-knowledge-graph-rag
 
 ## ---Pre-requisites Workspace setup ends here---
+
+# Option 2 - Each example has a Jupyter notebook code which can be imported into your locally running Jupyter notebook setup
+
 
 ### Workshop Execution Overview
 
