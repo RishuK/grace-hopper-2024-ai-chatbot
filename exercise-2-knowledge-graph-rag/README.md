@@ -287,6 +287,12 @@ Run the below command to execute the exercise-2 code.
 </div>
 <br/>
 
+### Knowledge Graph 
+<div> 
+    <img src="./assets/neo4j-knowledge-graph.png" width="50%"/>
+</div>
+<br/>
+
 ## Sample Data File Description for the Knowledge Graph
 
 Here’s an explanation of the entities and relationships for the Lumina knowledge graph:
