@@ -35,6 +35,12 @@ ollama pull mistral
 
 ### Excercise execution
 
+#### Architecture diagram
+<div> 
+    <img src="./assets/example-1-diagram.png" width="50%"/>
+</div>
+<br/>
+
 #### Building RAG chat-bot
 
 We will build a RAG-based chat application which will answer questions based on PDF document you will upload.
@@ -131,3 +137,9 @@ streamlit run chat_ui.py
 ```
 
 Use the pdf file - Lumina.pdf (or Elena.pdf) in the folder and Ask questions about Lumina, the startup (or Elena)
+
+#### Final output
+<div> 
+    <img src="./assets/chatbot-image.png" width="50%"/>
+</div>
+<br/>
