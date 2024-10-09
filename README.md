@@ -34,9 +34,6 @@ git clone https://github.com/RishuK/grace-hopper-2024-ai-chatbot.git
 
 ## ---Pre-requisites Workspace setup ends here---
 
-# Option 2 - Each example has a Jupyter notebook code which can be imported into your locally running Jupyter notebook setup
-
-
 ### Workshop Execution Overview
 
 These workshop contains the following branches:
@@ -62,3 +59,7 @@ git checkout exercises
 
 - [Neo4j Desktop Installation and Setup Steps](./exercise-2-knowledge-graph-rag/README.md/#neo4j-desktop-setup)
 - [Sample Data Description for Knowledge Graph Exercise](./exercise-2-knowledge-graph-rag/README.md/#sample-data-file-description-for-the-knowledge-graph)
+
+
+# Option 2 - Each example has a Jupyter notebook code which can be imported into your locally running Jupyter notebook setup
+
