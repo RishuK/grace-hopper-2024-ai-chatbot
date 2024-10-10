@@ -286,22 +286,17 @@ Run the below command to execute the exercise-2 code.
 ### Final output
 
 <div> 
-    <img src="./assets/chatbot-output-exercise-2.png" width="50%"/>
+    <img src="./assets/chatbot-output-exercise-2.png" width="60%"/>
 </div>
 <br/>
 
 ### Knowledge Graph Visualization
 
 <div> 
-    <img src="./assets/neo4j-knowledge-graph-visualization.png" width="50%"/>
+    <img src="./assets/neo4j-knowledge-graph-visualization.png" width="60%"/>
 </div>
 <br/>
 
-### Knowledge Graph 
-<div> 
-    <img src="./assets/neo4j-knowledge-graph.png" width="50%"/>
-</div>
-<br/>
 
 ## Sample Data File Description for the Knowledge Graph
 
