@@ -15,33 +15,18 @@ class ChatDocument:
 
     def __init__(self):
 
-        ## Instantiating our model object with relevant params for Chat Completion. 
+        ## Instantiating our model object with relevant params for Chat Completion.
         ## Running Mistral LLM locally using Ollama.
         ## https://api.python.langchain.com/en/latest/chat_models/langchain_community.chat_models.ollama.ChatOllama.html
         self.model = ChatOllama(model="mistral")
-
-        ## Different text splitters available - https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/
-        self.text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=20)
-
-        ## Prompt template for a language model.
-        ## It consists of a string template, which can contain system prompt, human prompt and context.
-        ## https://api.python.langchain.com/en/latest/prompts/langchain_core.prompts.prompt.PromptTemplate.html
-        self.prompt_from_template = PromptTemplate.from_template(
-            """
-            <s> [INST] You are an assistant for question-answering tasks. Use the following pieces of retrieved context 
-            to answer the question. If you don't know the answer, just say that you don't know. Answer only as per what is mentioned in the document. 
-            Use three sentences
-             maximum and keep the answer concise. [/INST] </s> 
-            [INST] Question: {question} 
-            Context: {context} 
-            Answer: [/INST]
-            """
-        )
 
     ## processDocument() method called from chat_ui.py
     def processDocument(self, pdf_file_path: str):
         ## Accepts a filepath
         docs = PyPDFLoader(file_path=pdf_file_path).load()
+
+        ## Different text splitters available - https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/
+        self.text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=20)
 
         ## Splits the document into smaller chunks
         ## https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/
@@ -62,6 +47,21 @@ class ChatDocument:
                 "k": 10, ## return top 5 chunks
                 "score_threshold": 0.50, ## with scores above this value
             },
+        )
+
+        ## Prompt template for a language model.
+        ## It consists of a string template, which can contain system prompt, human prompt and context.
+        ## https://api.python.langchain.com/en/latest/prompts/langchain_core.prompts.prompt.PromptTemplate.html
+        self.prompt_from_template = PromptTemplate.from_template(
+            """
+            <s> [INST] You are an assistant for question-answering tasks. Use the following pieces of retrieved context 
+            to answer the question. If you don't know the answer, just say that you don't know. Answer only as per what is mentioned in the document. 
+            Use three sentences
+             maximum and keep the answer concise. [/INST] </s> 
+            [INST] Question: {question} 
+            Context: {context} 
+            Answer: [/INST]
+            """
         )
 
         ## Construct langchain conversion chain using LCEL (LangChain Expression Language)
