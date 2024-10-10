@@ -8,6 +8,7 @@ At the end of the workshop, you will have a working AI-powered chatbot, which wi
 
 Link to the GHC 2024 Workshop Session: [GHC Workshop Link](https://ghc.anitab.org/session-catalog/?search.sessiontype=1712687033982003Uicv&search.sessiontracks=1715091731850001IqQr&search.experiencetype=option_1713202494133#/session/1717218930814001YQKl)
 
+# Option 1 - set up your local IDE with python, dependencies and clone the repo
 ## Pre-requisites Workspace setup starts here
 
 ### Steps:
@@ -58,3 +59,7 @@ git checkout exercises
 
 - [Neo4j Desktop Installation and Setup Steps](./exercise-2-knowledge-graph-rag/README.md/#neo4j-desktop-setup)
 - [Sample Data Description for Knowledge Graph Exercise](./exercise-2-knowledge-graph-rag/README.md/#sample-data-file-description-for-the-knowledge-graph)
+
+
+# Option 2 - Each example has a Jupyter notebook code which can be imported into your locally running Jupyter notebook setup
+

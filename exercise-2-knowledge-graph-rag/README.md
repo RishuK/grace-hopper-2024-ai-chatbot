@@ -161,6 +161,7 @@ You can also view the various installation options for Neo4j on the [Neo4j Deplo
 We will build a RAG chatbot - this time we will add a knowledge graph to enable a more intelligent chatbot, which can answer more complex user questions.
 
 ## Architecture
+
 <div> 
     <img src="./assets/example2-diagram.png" width="50%"/>
 </div>
@@ -281,9 +282,18 @@ Run the below command to execute the exercise-2 code.
 ```
     python3 knowledge-graph-rag.py
 ```
+
 ### Final output
+
 <div> 
-    <img src="./assets/chatbot-image.png" width="50%"/>
+    <img src="./assets/chatbot-output-exercise-2.png" width="50%"/>
+</div>
+<br/>
+
+### Knowledge Graph Visualization
+
+<div> 
+    <img src="./assets/neo4j-knowledge-graph-visualization.png" width="50%"/>
 </div>
 <br/>
 

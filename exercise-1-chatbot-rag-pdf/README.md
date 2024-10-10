@@ -92,7 +92,7 @@ Add the following code in the method processDocument()
         )
 ```
 
-#### Step 4: Add a system prompt template using Langchain [Prompts](https://python.langchain.com/v0.1/docs/modules/model_io/prompts/)
+#### Step 5: Add a system prompt template using Langchain [Prompts](https://python.langchain.com/v0.1/docs/modules/model_io/prompts/)
 
 ```
     self.prompt_from_template = PromptTemplate.from_template(
@@ -108,7 +108,7 @@ Add the following code in the method processDocument()
         )
 ```
 
-#### Step 5: Build a langchain conversion chain using prompt template and model with an output parser using [LCEL](https://python.langchain.com/v0.1/docs/expression_language/get_started/)
+#### Step 6: Build a langchain conversion chain using prompt template and model with an output parser using [LCEL](https://python.langchain.com/v0.1/docs/expression_language/get_started/)
 
 ```
     self.chain = ({"context": self.retriever, "question": RunnablePassthrough()}
