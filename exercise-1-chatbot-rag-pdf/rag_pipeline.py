@@ -39,8 +39,11 @@ class ChatDocument:
         ## Step 4: Configures the Vector store Retriever class for the type of search
         ## Add step 4 code here
 
-        ## Step 5: Build a chain of prompt template and model with an output parser using LCEL
+        ## Step 5: Add a system prompt template using Langchain Prompts
         ## Add step 5 code here
+
+        ## Step 6: Build a chain of prompt template and model with an output parser using LCEL
+        ## Add step 6 code here
 
 
     def chatQuestion(self, query: str):
