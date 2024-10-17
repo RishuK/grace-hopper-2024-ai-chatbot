@@ -8,7 +8,10 @@ At the end of the workshop, you will have a working AI-powered chatbot, which wi
 
 Link to the GHC 2024 Workshop Session: [GHC Workshop Link](https://ghc.anitab.org/session-catalog/?search.sessiontype=1712687033982003Uicv&search.sessiontracks=1715091731850001IqQr&search.experiencetype=option_1713202494133#/session/1717218930814001YQKl)
 
+Link to our Workshop Session Slides: [GHC24 AI Chatbot Masterclass Slides](./assets/GHC2024_AI_Chatbot_Masterclass.pptx.pdf)
+
 # Option 1 - set up your local IDE with python, dependencies and clone the repo
+
 ## Pre-requisites Workspace setup starts here
 
 ### Steps:
@@ -20,12 +23,13 @@ Link to the GHC 2024 Workshop Session: [GHC Workshop Link](https://ghc.anitab.or
 https://www.python.org/downloads/macos/
 
 - Download and use the installer
-- pip3 should get auto-installed with python. 
+- pip3 should get auto-installed with python.
 
 #### Step 2: Clone the repository
-````
+
+```
 git clone https://github.com/RishuK/grace-hopper-2024-ai-chatbot.git
-````
+```
 
 #### Step 3: Go to each excercise folder and **execute the pre-requisites under each folder below**
 
@@ -44,13 +48,15 @@ These workshop contains the following branches:
 Steps:
 
 1. Checkout branch 'exercises'
-````
+
+```
 git checkout exercises
-````
+```
 
 2. We will work through the following exercises. Each exercise has its README file that will guide you step by step
 
 #### Exercise 1 : Building RAG Chatbot using vector store
+
 [Exercise-1 Readme](./exercise-1-chatbot-rag-pdf/README.md)
 
 #### Exercise 2: RAG Chatbot with Knowledge Graph
@@ -60,6 +66,4 @@ git checkout exercises
 - [Neo4j Desktop Installation and Setup Steps](./exercise-2-knowledge-graph-rag/README.md/#neo4j-desktop-setup)
 - [Sample Data Description for Knowledge Graph Exercise](./exercise-2-knowledge-graph-rag/README.md/#sample-data-file-description-for-the-knowledge-graph)
 
-
 # Option 2 - Each example has a Jupyter notebook code which can be imported into your locally running Jupyter notebook setup
-
