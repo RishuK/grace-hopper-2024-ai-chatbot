@@ -292,6 +292,14 @@ Run the below command to execute the exercise-2 code.
 
 ### Knowledge Graph
 
+In Neo4j Browser, you can use the below Cypher Query to view the visualization for the graph data for this exercise:
+
+```
+   MATCH (s)-[r:!MENTIONS]->(t) RETURN s,r,t LIMIT 30
+```
+
+Neo4j Graph Visualization Output Example Screenshot:
+
 <div> 
     <img src="./assets/neo4j-knowledge-graph-visualization.png" width="50%"/>
 </div>
