@@ -8,6 +8,8 @@ At the end of the workshop, you will have a working AI-powered chatbot, which wi
 
 Link to the GHC 2024 Workshop Session: [GHC Workshop Link](https://ghc.anitab.org/session-catalog/?search.sessiontype=1712687033982003Uicv&search.sessiontracks=1715091731850001IqQr&search.experiencetype=option_1713202494133#/session/1717218930814001YQKl)
 
+Link to our Workshop Session Slides: [GHC24 AI Chatbot Masterclass Slides](./assets/GHC2024_AI_Chatbot_Masterclass.pptx.pdf)
+
 ## Pre-requisites Workspace setup starts here
 
 ### Steps:
@@ -22,10 +24,13 @@ https://www.python.org/downloads/macos/
 - Install pip3
 
 #### Step 2: Clone the repository
-````
+
+```
 git clone https://github.com/RishuK/grace-hopper-2024-ai-chatbot.git
-````
+```
+
 #### Step 3: Execute Pre-requisite-1 and Pre-requisite-2 for both the exercises
+
 Go to each excercise 1 and exercise 2 folder and **execute the pre-requisites under each folder below**
 
 - excercise-1-chatbot-rag-pdf
@@ -46,6 +51,7 @@ Steps:
 2. We will work through the following excercises. Each excercise has its README file that will guide you
 
 #### Exercise 1 : Building RAG Chatbot using vector store
+
 [Exercise-1 Readme](./exercise-1-chatbot-rag-pdf/README.md)
 
 #### Exercise 2: RAG Chatbot with Knowledge Graph
